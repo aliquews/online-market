@@ -17,7 +17,7 @@ async def update_products(callback: CallbackQuery, state: FSMContext, bot: Bot):
 
 @router.message(SetProduct.title)
 async def setting_title(message: Message, state: FSMContext):
-    await state.update_data(title=message.text)
+    await state.update_data(title=message.html_text)
     await message.answer(
         text = "Теперь укажи цену в рублях",
     )

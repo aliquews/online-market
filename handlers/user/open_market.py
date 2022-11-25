@@ -11,7 +11,7 @@ router = Router()
 @router.message(text="Открыть магазин")
 async def open_market(message: Message):
     await message.answer("<b>СПИСОК ПАКОВ</b>, используйте кнопки для выбора", reply_markup=select_product_kb(), parse_mode="HTML")
-    await message.answer(db.show_products(),reply_markup=go_back_to_market_kb())
+    await message.answer(db.show_products(),reply_markup=go_back_to_market_kb(), parse_mode="HTML")
 
 @router.callback_query(text="go_back")
 async def go_back_to_market(callback: CallbackQuery, bot: Bot):
