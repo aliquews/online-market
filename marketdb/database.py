@@ -88,6 +88,20 @@ class DataBase:
             session.delete(table_string)
             session.commit()
 
+    def get_title_list(self):
+        titles = list()
+        with Session(self.engine) as session:
+            title = session.scalars(select(Product.description))
+            for i in title:
+                titles.append(i)
+            return titles
+
+    def del_product(self, title):
+        with Session(self.engine) as session:
+            stmt = session.get(Product, session.scalar(select(Product.id).where(Product.description == title)))
+            session.delete(stmt)
+            session.commit()
+
 
 
 db = DataBase(DB_LOGIN)
