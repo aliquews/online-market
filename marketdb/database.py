@@ -31,7 +31,8 @@ class DataBase:
         '''
         with Session(self.engine) as session:
             prod = Product(
-                description = data['title'],
+                title = data['title'],
+                description = data['description'],
                 price = int(data['price']),
                 content = data['content'],
             )
@@ -44,22 +45,22 @@ class DataBase:
             out_data = list()
             contents = select(Product)
             for row in session.execute(contents):
-                out_data.append([row.Product.description, row.Product.price])
+                out_data.append([row.Product.title, row.Product.description, row.Product.price])
             for content in out_data:
-                text += " | ".join(list(map(str,content)))
+                text += str(content[0]) + '. ' + str(content[1]) + ' | ' + str(content[2])
                 text += "₽\n\n"
             return text
 
     def select_product_price(self, message: str):
         with Session(self.engine) as session:
             title = message.split(' | ')[0]
-            product_price = session.scalar(select(Product.price).where(Product.description == title))
+            product_price = session.scalar(select(Product.price).where(Product.title == title))
             return product_price
 
     def select_content(self, message: str):
         with Session(self.engine) as session:
             title = message.split(' | ')[0]
-            content = session.scalar(select(Product.content).where(Product.description == title))
+            content = session.scalar(select(Product.content).where(Product.title == title))
             return content
 
     def append_bill(self, telegram_id: int, bill: Union[str, int], content):
@@ -91,14 +92,14 @@ class DataBase:
     def get_title_list(self):
         titles = list()
         with Session(self.engine) as session:
-            title = session.scalars(select(Product.description))
+            title = session.scalars(select(Product.title))
             for i in title:
                 titles.append(i)
             return titles
 
     def del_product(self, title):
         with Session(self.engine) as session:
-            stmt = session.get(Product, session.scalar(select(Product.id).where(Product.description == title)))
+            stmt = session.get(Product, session.scalar(select(Product.id).where(Product.title == title)))
             session.delete(stmt)
             session.commit()
 

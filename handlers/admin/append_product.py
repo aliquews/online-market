@@ -19,9 +19,18 @@ async def update_products(callback: CallbackQuery, state: FSMContext, bot: Bot):
 async def setting_title(message: Message, state: FSMContext):
     await state.update_data(title=message.html_text)
     await message.answer(
-        text = "Теперь укажи цену в рублях",
+        text = "Описание продукта",
+    )
+    await state.set_state(SetProduct.description)
+
+@router.message(SetProduct.description)
+async def setting_descr(message: Message, state: FSMContext):
+    await state.update_data(description=message.html_text)
+    await message.answer(
+        "Укажи цену",
     )
     await state.set_state(SetProduct.price)
+
 
 @router.message(
     IsDigit(),
@@ -30,7 +39,7 @@ async def setting_title(message: Message, state: FSMContext):
 async def setting_price(message: Message, state: FSMContext):
     await state.update_data(price=message.text)
     await message.answer(
-        text="Ссылку на пак",
+        text="Ссылку на прод",
     )
     await state.set_state(SetProduct.content)
 

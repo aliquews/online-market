@@ -13,18 +13,19 @@ class User(Base):
 
 class Product(Base):
     '''
-    description pack,
+    title pack,
     price in roubles,
     content - link on pack
     '''
     __tablename__ = 'product'
     id = Column(BigInteger, primary_key=True)
+    title = Column(Text)
     description = Column(Text)
     price = Column(BigInteger)
     content = Column(Text)
 
     def __repr__(self) -> str:
-        return f'Product(id={self.id}, description={self.description}, price={self.price})'
+        return f'Product(id={self.id}, title={self.title}, price={self.price})'
 
 class Bill(Base):
     '''

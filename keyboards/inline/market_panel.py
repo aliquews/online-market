@@ -18,4 +18,11 @@ def market_panel_kb():
 
         )
     )
+    inline_kb.add(
+        InlineKeyboardButton(
+            text="Закрыть панель",
+            callback_data="back",
+        )
+    )
+    inline_kb.adjust(2)
     return inline_kb.as_markup()
