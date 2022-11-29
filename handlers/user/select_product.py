@@ -4,7 +4,7 @@ from aiogram.types import Message, CallbackQuery
 from pyqiwip2p import QiwiP2P
 
 
-from marketdb.database import db
+from marketdb import db
 from keyboards.inline.buy_menu import buy_menu_kb
 from keyboards.default.open_market import open_market_kb
 from config import QIWI_TOKEN

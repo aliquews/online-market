@@ -1,7 +1,7 @@
 from aiogram import Router, Bot
 from aiogram.types import Message, CallbackQuery
 
-from marketdb.database import db
+from marketdb import db
 from keyboards.default.select_product import select_product_kb
 from keyboards.default.open_market import open_market_kb
 from keyboards.inline.go_back import go_back_to_market_kb

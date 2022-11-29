@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from marketdb.database import db
+from marketdb import db
 from config import include_sticker
 from keyboards.default.open_market import open_market_kb
 

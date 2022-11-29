@@ -53,13 +53,13 @@ class DataBase:
 
     def select_product_price(self, message: str):
         with Session(self.engine) as session:
-            title = message.split(' | ')[0]
+            title = message.split('. ')[0]
             product_price = session.scalar(select(Product.price).where(Product.title == title))
             return product_price
 
     def select_content(self, message: str):
         with Session(self.engine) as session:
-            title = message.split(' | ')[0]
+            title = message.split('. ')[0]
             content = session.scalar(select(Product.content).where(Product.title == title))
             return content
 
@@ -102,7 +102,3 @@ class DataBase:
             stmt = session.get(Product, session.scalar(select(Product.id).where(Product.title == title)))
             session.delete(stmt)
             session.commit()
-
-
-
-db = DataBase(DB_LOGIN)

@@ -1,7 +1,7 @@
 from aiogram.types import KeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-from marketdb.database import db
+from marketdb import db
 
 def select_product_kb():
     kb = ReplyKeyboardBuilder()

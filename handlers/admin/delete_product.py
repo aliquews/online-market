@@ -1,7 +1,7 @@
 from aiogram import Router, Bot
 from aiogram.types import Message, CallbackQuery
 
-from marketdb.database import db
+from marketdb import db
 from callbacks.delete_callback import DelCallback
 from keyboards.inline.inline_list import inline_list_kb
 

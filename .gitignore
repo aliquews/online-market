@@ -3,3 +3,5 @@ config.py
 __pycache__/
 .market/
 test.py
+Dockerfile
+docker-compose.yml

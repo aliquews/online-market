@@ -4,7 +4,7 @@ from aiogram.dispatcher.fsm.context import FSMContext
 
 from filters.is_digit import IsDigit
 from states.set_product import SetProduct
-from marketdb.database import db
+from marketdb import db
 
 router = Router()
 

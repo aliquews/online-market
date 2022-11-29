@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from marketdb.database import db
+from marketdb import db
 from callbacks.delete_callback import DelCallback
 
 def inline_list_kb():
